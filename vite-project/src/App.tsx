@@ -1,17 +1,22 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import RequestQuery from './pages/RequestQuery';
+import Traditionnal from './pages/Traditionnal';
 import './App.css'
 
-function App() {
-
-
+const App:React.FC = () => {
   return (
-    <Router className="App">
+    <div>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/requestquery" element={<RequestQuery />} />
+        <Route path="/traditionnal" element={<Traditionnal />} />
       </Routes>
-    </Router>
+    </div>
   )
 }
 
-export default App
+export default App;
