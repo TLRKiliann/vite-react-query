@@ -22,6 +22,7 @@ $ pnpm add axios
 
 $ pnpm add @tanstack/react-query
 
+$ pnpm add @tanstack/react-query-devtools
 
 ## json-server
 
@@ -33,4 +34,11 @@ $ pnpm run server
 
 Enter localhost:4000/comments in your browser
 
-## @tanstack/react-query
+## @tanstack/react-query (with axios)
+
+One page : Traditional (query)
+
+Another page : RequestQuery (@tanstack/react-query)
+
+$ pnpm add @tanstack/react-query-devtools
+
