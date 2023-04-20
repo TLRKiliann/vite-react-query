@@ -19,18 +19,18 @@ const Navbar:React.FC = () => {
           <Link
             data-testid="secondlink"
             className="link--tag"
-            to='/traditionnal'
+            to='/traditional'
           >
-            Traditionnal
+            Traditional
           </Link>
         </li>
         <li>
           <Link
             data-testid="thirdlink"
             className="link--tag"
-            to='/requestquery'
+            to='/requestqueryRQ'
           >
-            Requestquery
+            RequestqueryRQ
           </Link>
         </li>
       </ul>    
