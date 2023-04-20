@@ -1,17 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
+import React from 'react'
+import {QueryClientProvider, QueryClient} from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import RequestQueryRQ from './pages/RequestQueryRQ';
+import Traditional from './pages/Traditional';
 import './App.css'
 
-function App() {
+const queryClient = new QueryClient();
 
-
+const App:React.FC = () => {
   return (
-    <Router className="App">
+    <div>
+      <QueryClientProvider client={queryClient}>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/requestqueryRQ" element={<RequestQueryRQ />} />
+        <Route path="/traditional" element={<Traditional />} />
       </Routes>
-    </Router>
+      <ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
+      </QueryClientProvider>
+    </div>
   )
 }
-
-export default App
+export default App;
