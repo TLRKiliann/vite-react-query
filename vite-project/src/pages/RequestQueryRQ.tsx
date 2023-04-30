@@ -3,11 +3,15 @@ import {useQuery} from '@tanstack/react-query'
 import axios from 'axios'
 
 type ValuesProps = {
-  isLoading: boolean
+  isLoading: boolean;
   data: {
-    id: number
-    body: string
-    postId: number
+    id: number;
+    body: string;
+    postId: number;
+  }
+  isError: boolean;
+  error: {
+    message: string;
   }
 }
 
@@ -18,8 +22,6 @@ const RequestQueryFunction = () => {
 const RequestQueryRQ:React.FC = () => {
   const {isLoading, data, isError, error} = useQuery<ValuesProps>(
     ['comments'], RequestQueryFunction)
-
-  //console.log("data.data.id", data?.data.map((d) => typeof(d.id)))
 
   if (isLoading) {
     return <h2>Loading...</h2>
