@@ -20,16 +20,26 @@ const RequestQueryFunction = () => {
 }
 
 const RequestQueryRQ:React.FC = () => {
-  const { isLoading, data, isError, error, isFetching } = useQuery<ValuesProps>(
+
+  const onSuccess = (data) => {
+    console.log("Perform side effect after data fetching", data)
+  }
+
+  const onError = (error) => {
+    console.log("Perform side effect after encountering an error", error)
+  }
+
+  const { isLoading, data, isError, error, isFetching, refetch } = useQuery<ValuesProps>(
     ['comments'], RequestQueryFunction,
     {
-      refetchInterval: false,
+      onSuccess,
+      onError,
     }
   )
 
   console.log("isLoading : ", isLoading, "isFetching : ", isFetching)
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <h2>Loading...</h2>
   }
 
@@ -41,6 +51,7 @@ const RequestQueryRQ:React.FC = () => {
     <>
       <h1>RequestQuery with React-Query</h1>
       <h2>Result of request :</h2>
+      <button type="button" onClick={refetch}>Fetch Data</button>
       {data?.data.map((d) => (
         <div key={d.id}>
           <p>ID: {d.id}</p>
