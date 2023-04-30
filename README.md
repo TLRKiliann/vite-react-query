@@ -2,11 +2,15 @@
 
 ## Install
 
-$ pnpm create vite
+`$ pnpm create vite`
+
+Choose:
 
 > React
 
 > TypeScript
+
+Then enter the commands (cmd) below :
 
 ```
   cd vite-project
@@ -14,25 +18,35 @@ $ pnpm create vite
   pnpm run dev
 ```
 
-$ pnpm install react-router-dom
+## Copy from GitHub repository
 
-$ pnpm install --save-dev json-server
+`git clone ...[key_repo]`
 
-$ pnpm add axios
+`cd vite-react-query/vite-project`
 
-$ pnpm add @tanstack/react-query
+`$ pnpm install`
 
-$ pnpm add @tanstack/react-query-devtools
+## Module Installation
 
-## json-server
+`$ pnpm install react-router-dom`
+
+`$ pnpm add axios`
+
+`$ pnpm install --save-dev json-server`
+
+`$ pnpm add @tanstack/react-query`
+
+`$ pnpm add @tanstack/react-query-devtools`
+
+## Json-Server
 
 Add in scripts of `package.json`
 
 `"server": "json-server --watch db.json --port 4000",`
 
-$ pnpm run server
+`$ pnpm run server`
 
-Enter localhost:4000/comments in your browser
+Enter localhost:4000/comments in your browser to see if the page display data from comments
 
 ## @tanstack/react-query (with axios)
 
@@ -40,5 +54,19 @@ One page : Traditional (query)
 
 Another page : RequestQuery (@tanstack/react-query)
 
-$ pnpm add @tanstack/react-query-devtools
+# How to launch this app ?
+
+It's quite simple.
+
+Run the cmd :
+
+`$ pnpm run server`
+
+in a console & run this cmd 
+
+`$ pnpm run dev`
+
+in another one.
+
+Data should be appear in your browser interface.
 
