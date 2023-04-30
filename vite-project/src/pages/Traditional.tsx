@@ -19,17 +19,20 @@ const Traditional:React.FC = () => {
   console.log("errorMsg: ", errorMsg?.message)
 
   useEffect(() => {
-    axios
-      .get('http://localhost:4000/comments/')
-      .then((res) => {
-        setNewData(res.data)
+    const callerFunc = async () => {
+      await axios
+        .get('http://localhost:4000/comments/')
+        .then((res) => {
+          setNewData(res.data)
+          setIsLoading(false)
+      })
+      .catch((error) => {
+        setErrorMsg(error.message)
         setIsLoading(false)
-    })
-    .catch((error) => {
-      setErrorMsg(error.message)
-      setIsLoading(false)
-    })
-    //return () => console.log("clean-up!")
+      })
+    }
+    callerFunc();
+    return () => console.log("clean-up!")
   }, [])
 
   if (isLoading) {

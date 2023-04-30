@@ -1,5 +1,5 @@
 import React from 'react'
-import {useQuery} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 type ValuesProps = {
@@ -20,8 +20,9 @@ const RequestQueryFunction = () => {
 }
 
 const RequestQueryRQ:React.FC = () => {
-  const {isLoading, data, isError, error} = useQuery<ValuesProps>(
-    ['comments'], RequestQueryFunction)
+  const { isLoading, data, isError, error } = useQuery<ValuesProps>(
+    ['comments'], RequestQueryFunction
+  )
 
   if (isLoading) {
     return <h2>Loading...</h2>
