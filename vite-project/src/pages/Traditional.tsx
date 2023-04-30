@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 type DataProps = {
-  id: number;
-  body: string;
-  postId: number;
+  data: {
+    id: number;
+    body: string;
+    postId: number;
+  }
 }[]
 
 type ErrorMsgProps = {
@@ -44,10 +46,10 @@ const Traditional:React.FC = () => {
   }
 
   return (
-    <div>
+    <>
       <h1>Traditional</h1>
       <h2>Result of request :</h2>
-      {newData.map((d) => (
+      {newData?.map((d) => (
         <div key={d.id}>
           <p>ID: {d.id}</p>
           <p>BODY: {d.body}</p>
@@ -55,7 +57,7 @@ const Traditional:React.FC = () => {
         </div>
         )
       )}
-    </div>
+    </>
   )
 }
 export default Traditional;

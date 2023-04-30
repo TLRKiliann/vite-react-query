@@ -20,9 +20,14 @@ const RequestQueryFunction = () => {
 }
 
 const RequestQueryRQ:React.FC = () => {
-  const { isLoading, data, isError, error } = useQuery<ValuesProps>(
-    ['comments'], RequestQueryFunction
+  const { isLoading, data, isError, error, isFetching } = useQuery<ValuesProps>(
+    ['comments'], RequestQueryFunction,
+    {
+      refetchInterval: false,
+    }
   )
+
+  console.log("isLoading : ", isLoading, "isFetching : ", isFetching)
 
   if (isLoading) {
     return <h2>Loading...</h2>
@@ -33,7 +38,7 @@ const RequestQueryRQ:React.FC = () => {
   }
 
   return (
-    <div>
+    <>
       <h1>RequestQuery with React-Query</h1>
       <h2>Result of request :</h2>
       {data?.data.map((d) => (
@@ -44,7 +49,7 @@ const RequestQueryRQ:React.FC = () => {
         </div>
         )
       )}
-    </div>
+    </>
   )
 }
 export default RequestQueryRQ;
