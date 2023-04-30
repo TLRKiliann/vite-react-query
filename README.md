@@ -336,3 +336,80 @@ Option by default is false.
 if refetchInterval: 3000 => refetch data every 3 seconds.
 
 Go to the RequestQueryRQ page, and you can observe in the console isFetching.
+
+---
+
+## Enabled - button - refetch
+
+```
+  const { data, isError, error, isLoading, isFetching, refetch } = useQuery(
+    ['comments'], functionAPICall,
+    {
+      enabled: false,
+    }
+  )
+
+  if (isLoading || isFetching) { // message Loading... appear.
+    return <h2>Loading...</h2>
+  }
+
+  return (
+    <button onCLick={refetch}>Fetch Data</button>
+  )
+}
+```
+
+---
+
+## Callback with onSuccess & onError
+
+```
+  const onSuccess = (data) => {
+    console.log("Perform side effect after data fetching", data)
+  }
+
+  const onError = (error) => {
+    console.log("Perform side effect after encountering an error", error)
+  }
+
+  const { isLoading, data, isError, error, isFetching, refetch } = useQuery<ValuesProps>(
+    ['comments'], RequestQueryFunction,
+    {
+      onSuccess,
+      onError,
+    }
+  )
+```
+
+---
+
+## Data Transformation
+
+  data will be convert to superHeroNames.
+
+```
+  ...
+  const { isLoading, data, isError, error, isFetching, refetch } = useQuery<ValuesProps>(
+    ['comments'], RequestQueryFunction,
+    {
+      onSuccess,
+      onError,
+      select: (data) => {
+        const superHeroNames = data.data.map((hero) => hero.name)
+        return superHeroNames
+    }
+
+  //In JSX
+
+  return(
+    <>
+      {data.map((hero) => (
+        <p key={hero}>{hero}</p>
+      )}
+    </>
+  )
+}
+```
+---
+
+## video 13
