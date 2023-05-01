@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import useSuperHook from '../hooks/useSuperHook'
 
 type ValuesProps = {
   isLoading: boolean;
@@ -29,13 +30,7 @@ const RequestQueryRQ:React.FC = () => {
     console.log("Perform side effect after encountering an error", error)
   }
 
-  const { isLoading, data, isError, error, isFetching, refetch } = useQuery<ValuesProps>(
-    ['comments'], RequestQueryFunction,
-    {
-      onSuccess,
-      onError,
-    }
-  )
+  const { isLoading, data, isError, error, isFetching, refetch } = useSuperHook<ValuesProps>(onSuccess, onError);
 
   console.log("isLoading : ", isLoading, "isFetching : ", isFetching)
 
