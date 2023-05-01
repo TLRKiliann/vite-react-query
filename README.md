@@ -412,4 +412,7 @@ Go to the RequestQueryRQ page, and you can observe in the console isFetching.
 ```
 ---
 
-## video 13
+## Reusable hook
+
+You can use the hook RequestQueryRQ by placing it into another page. See folder src/hooks/useSuperHook.ts.
+This hook can be called from wherever you want.
