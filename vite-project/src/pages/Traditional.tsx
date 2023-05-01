@@ -18,7 +18,7 @@ const Traditional:React.FC = () => {
   const [newData, setNewData] = useState<DataProps>([])
   const [errorMsg, setErrorMsg] = useState<ErrorMsgProps | undefined>(undefined)
 
-  console.log("errorMsg: ", errorMsg?.message)
+  //console.log("errorMsg: ", errorMsg?.message)
 
   useEffect(() => {
     const callerFunc = async () => {
@@ -52,8 +52,8 @@ const Traditional:React.FC = () => {
       {newData?.map((d) => (
         <div key={d.id}>
           <p>ID: {d.id}</p>
-          <p>BODY: {d.body}</p>
-          <p>POSTID: {d.postId}</p>
+          <p>Text: {d.text}</p>
+          <p>Author: {d.author}</p>
         </div>
         )
       )}

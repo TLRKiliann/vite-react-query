@@ -1,14 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import useSuperHook from '../hooks/useSuperHook'
+import useComments from '../hooks/useComments'
 
 type ValuesProps = {
   isLoading: boolean;
   data: {
     id: number;
-    body: string;
-    postId: number;
+    text: string;
+    author: number;
   }
   isError: boolean;
   error: {
@@ -30,7 +31,10 @@ const RequestQueryRQ:React.FC = () => {
     console.log("Perform side effect after encountering an error", error)
   }
 
-  const { isLoading, data, isError, error, isFetching, refetch } = useSuperHook<ValuesProps>(onSuccess, onError);
+  const { isLoading, data, isError, error, isFetching, refetch } = useComments<ValuesProps>(
+    onSuccess, 
+    onError
+  );
 
   console.log("isLoading : ", isLoading, "isFetching : ", isFetching)
 
@@ -47,12 +51,12 @@ const RequestQueryRQ:React.FC = () => {
       <h1>RequestQuery with React-Query</h1>
       <h2>Result of request :</h2>
       <button type="button" onClick={refetch}>Fetch Data</button>
-      {data?.data.map((d) => (
-        <div key={d.id}>
-          <p>ID: {d.id}</p>
-          <p>BODY: {d.body}</p>
-          <p>POSTID: {d.postId}</p>
-        </div>
+      {data?.data.map((comment) => (
+        <li key={comment.id} style={{marginTop: "20px"}}>
+          <Link to={`/request-rq/${comment.id}`} style={{textDecoration: "none", color: "cyan"}}>
+            Text: {comment.text} - Author: {comment.author}
+          </Link>
+        </li>
         )
       )}
     </>
