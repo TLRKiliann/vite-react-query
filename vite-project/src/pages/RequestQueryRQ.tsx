@@ -1,6 +1,7 @@
 import React from 'react'
-import {useQuery} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import useSuperHook from '../hooks/useSuperHook'
 
 type ValuesProps = {
   isLoading: boolean;
@@ -20,10 +21,20 @@ const RequestQueryFunction = () => {
 }
 
 const RequestQueryRQ:React.FC = () => {
-  const {isLoading, data, isError, error} = useQuery<ValuesProps>(
-    ['comments'], RequestQueryFunction)
 
-  if (isLoading) {
+  const onSuccess = (data) => {
+    console.log("Perform side effect after data fetching", data)
+  }
+
+  const onError = (error) => {
+    console.log("Perform side effect after encountering an error", error)
+  }
+
+  const { isLoading, data, isError, error, isFetching, refetch } = useSuperHook<ValuesProps>(onSuccess, onError);
+
+  console.log("isLoading : ", isLoading, "isFetching : ", isFetching)
+
+  if (isLoading || isFetching) {
     return <h2>Loading...</h2>
   }
 
@@ -32,9 +43,10 @@ const RequestQueryRQ:React.FC = () => {
   }
 
   return (
-    <div>
+    <>
       <h1>RequestQuery with React-Query</h1>
       <h2>Result of request :</h2>
+      <button type="button" onClick={refetch}>Fetch Data</button>
       {data?.data.map((d) => (
         <div key={d.id}>
           <p>ID: {d.id}</p>
@@ -43,7 +55,7 @@ const RequestQueryRQ:React.FC = () => {
         </div>
         )
       )}
-    </div>
+    </>
   )
 }
 export default RequestQueryRQ;
