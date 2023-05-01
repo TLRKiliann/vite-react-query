@@ -288,7 +288,7 @@ If you don't indicate `cacheTime`, useQuery function will erase data after 5 min
 
 ---
 
-## Stale
+## Stale (périmé)
 
 Default `staleTime` is 0 second.
 
@@ -441,6 +441,9 @@ pages/RequestQueryRQ.tsx:
 
 ```
 import {Link} from 'react-router-dom'
+import useComments from '../hooks/useComments'
+
+  const {isLoading, data, isError, error } = useComments()
 
 ...
 
@@ -460,26 +463,28 @@ hooks/useComment.ts
 ```
 (useComment.ts)
 
-const catchApiId = (commentId: number) => {
+const catchApiId = (commentId: string) => {
   return axios.get(`http://localhost:4000/comments/${commentId}`)
 }
-const useComment = (commentId: number) => {
-  return useQuery(["comments", commentId], () => catchApiId(commentId))
+const useComment = (commentId: string) => {
+  return useQuery<ValuesProps>(["comments", commentId], () => catchApiId(commentId))
 }
 export default useComment;
 ```
 
-hooks/useComment.ts With queryKey
+hooks/useComment.ts with queryKey
 
 ```
 (useComment.ts)
 
-const catchApiId = ({query}: number) => {
+import { ValuesProps } from '../type/data.type'
+
+const catchApiId = ({query}: string) => {
   const commentId = queryKey[1]
   return axios.get(`http://localhost:4000/comments/${commentId}`)
 }
-const useComment = (commentId: number) => {
-  return useQuery(["comments", commentId], catchApiId)
+const useComment = (commentId: string) => {
+  return useQuery<ValuesProps>(["comments", commentId], catchApiId)
 }
 export default useComment;
 ```
@@ -492,15 +497,16 @@ pages/RequestQueryRQId.tsx
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import useComment from '../hooks/useComment'
+import { ValuesProps } from '../type/data.type'
+import { ParamsProps } from '../type/data.type'
 
 ...
 
-  const { commentId } = useParams()
+  const { commentId } = useParams<ParamsProps>()
   const { isLoading, data, isError, error } = useComment<ValuesProps>(commentId)
 
       <p style={{color: "lightgreen"}}>
         Text: {data.data.text} - Author: {data.data.author}
       </p>
-
 ...
 ```

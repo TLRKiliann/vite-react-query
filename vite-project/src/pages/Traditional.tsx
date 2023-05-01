@@ -10,15 +10,17 @@ type DataProps = {
 }[]
 
 type ErrorMsgProps = {
-  message?: string
+  error: {
+    message?: string
+  }
 }
 
 const Traditional:React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [newData, setNewData] = useState<DataProps>([])
-  const [errorMsg, setErrorMsg] = useState<ErrorMsgProps | undefined>(undefined)
+  const [error, setError] = useState<ErrorMsgProps | undefined>(undefined)
 
-  //console.log("errorMsg: ", errorMsg?.message)
+  //console.log("error: ", error?.message)
 
   useEffect(() => {
     const callerFunc = async () => {
@@ -29,7 +31,7 @@ const Traditional:React.FC = () => {
           setIsLoading(false)
       })
       .catch((error) => {
-        setErrorMsg(error.message)
+        setError(error.message)
         setIsLoading(false)
       })
     }
@@ -41,8 +43,8 @@ const Traditional:React.FC = () => {
     return <h2>Loading...</h2>
   }
 
-  if (errorMsg) {
-    return <h2>{errorMsg}</h2>
+  if (error) {
+    return <h2>{error}</h2>
   }
 
   return (
