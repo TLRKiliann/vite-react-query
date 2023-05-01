@@ -3,19 +3,7 @@ import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import useComments from '../hooks/useComments'
-
-type ValuesProps = {
-  isLoading: boolean;
-  data: {
-    id: number;
-    text: string;
-    author: number;
-  }
-  isError: boolean;
-  error: {
-    message: string;
-  }
-}
+import { ValuesProps } from '../type/data.type'
 
 const RequestQueryRQ:React.FC = () => {
 

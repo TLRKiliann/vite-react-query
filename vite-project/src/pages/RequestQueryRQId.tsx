@@ -2,26 +2,27 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import useComment from '../hooks/useComment'
+import { ValuesProps } from '../type/data.type'
+import { ParamsProps } from '../type/data.type'
+import { DataTypes } from '../type/data.type'
 
-type ValuesProps = {
-  isLoading: boolean;
-  data: {
-    id: number;
-    text: string;
-    author: number;
-  }
-  isError: boolean;
-  error: {
-    message: string;
-  }
-}
 
 const RequestQueryRQId:React.FC = () => {
 	
-	const { commentId } = useParams()
-	const { isLoading, data, isError, error } = useComment<ValuesProps>(commentId)
+	const onSuccess = (data: DataTypes) => {
+		console.log("Success", data)
+	}
 
-	if (isLoading) {
+	const onError = (error: string) => {
+		console.log("Error", error)
+	}
+
+	const { commentId } = useParams<ParamsProps>()
+	const { isLoading, data, isError, error, isFetching } = useComment<ValuesProps>(commentId, onSuccess, onError)
+
+	console.log("isLoading id : ", isLoading, "isFetching id : ", isFetching)
+
+	if (isLoading || isFetching) {
 		return <h2>Loading...</h2>
 	}
 
