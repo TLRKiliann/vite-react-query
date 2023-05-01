@@ -416,3 +416,91 @@ Go to the RequestQueryRQ page, and you can observe in the console isFetching.
 
 You can use the hook RequestQueryRQ by placing it into another page. See folder src/hooks/useSuperHook.ts.
 This hook can be called from wherever you want.
+
+## Query by id
+
+Look at :
+
+- pages/RequestQueryRQ.tsx
+- App.tsx
+- hooks/useComment.ts
+- pages/RequestQueryRQId.tsx
+
+Router:
+
+```
+(App.tsx)
+
+import RequestQueryRQId from './pages/RequestQueryRQId';
+...
+  <Route path="/request-rq/:commentId" element={<RequestQueryRQId />} />
+...
+```
+
+pages/RequestQueryRQ.tsx:
+
+```
+import {Link} from 'react-router-dom'
+
+...
+
+  return (
+      {data?.data.map((comment) => (
+        <li key={comment.id} style={{marginTop: "20px"}}>
+          <Link to={`/request-rq/${comment.id}`} style={{textDecoration: "none", color: "cyan"}}>
+            Text: {comment.text} - Author: {comment.author}
+          </Link>
+        </li>
+        )
+      )}
+```
+
+hooks/useComment.ts
+
+```
+(useComment.ts)
+
+const catchApiId = (commentId: number) => {
+  return axios.get(`http://localhost:4000/comments/${commentId}`)
+}
+const useComment = (commentId: number) => {
+  return useQuery(["comments", commentId], () => catchApiId(commentId))
+}
+export default useComment;
+```
+
+hooks/useComment.ts With queryKey
+
+```
+(useComment.ts)
+
+const catchApiId = ({query}: number) => {
+  const commentId = queryKey[1]
+  return axios.get(`http://localhost:4000/comments/${commentId}`)
+}
+const useComment = (commentId: number) => {
+  return useQuery(["comments", commentId], catchApiId)
+}
+export default useComment;
+```
+
+pages/RequestQueryRQId.tsx
+
+```
+(RequestQueryRQId.tsx)
+
+import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
+import useComment from '../hooks/useComment'
+
+...
+
+  const { commentId } = useParams()
+  const { isLoading, data, isError, error } = useComment<ValuesProps>(commentId)
+
+      <p style={{color: "lightgreen"}}>
+        Text: {data.data.text} - Author: {data.data.author}
+      </p>
+
+...
+```

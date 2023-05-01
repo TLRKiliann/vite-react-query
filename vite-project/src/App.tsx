@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import RequestQueryRQ from './pages/RequestQueryRQ';
+import RequestQueryRQId from './pages/RequestQueryRQId';
 import Traditional from './pages/Traditional';
 import './App.css'
 
@@ -17,6 +18,7 @@ const App:React.FC = () => {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route path="/request-rq/:commentId" element={<RequestQueryRQId />} />
         <Route path="/requestqueryRQ" element={<RequestQueryRQ />} />
         <Route path="/traditional" element={<Traditional />} />
       </Routes>

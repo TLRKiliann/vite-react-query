@@ -5,8 +5,8 @@ type ValuesProps = {
   isLoading: boolean;
   data: {
     id: number;
-    body: string;
-    postId: number;
+    text: string;
+    author: number;
   }
   isError: boolean;
   error: {
@@ -18,7 +18,7 @@ const RequestQueryFunction = () => {
   return axios.get('http://localhost:4000/comments') 
 }
 
-const RequestQueryRQ = (onSuccess, onError) => {
+const useComments = (onSuccess, onError) => {
   return useQuery<ValuesProps>(['comments'], RequestQueryFunction,
     {
       onSuccess,
@@ -26,4 +26,4 @@ const RequestQueryRQ = (onSuccess, onError) => {
     }
   )
 }
-export default RequestQueryRQ;
+export default useComments;

@@ -1,19 +1,26 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
   "comments": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "text": "I'm very happy",
+      "author": "Douglas Pit"
+    },
+    {
+      "id": 2,
+      "text": "Code is my life",
+      "author": "William Johan"
+    },
+    {
+      "id": 3,
+      "text": "The deep web",
+      "author": "Manuel Perreiraz"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "books": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 123
+    }
+  ]
 }
