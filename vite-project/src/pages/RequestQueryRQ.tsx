@@ -17,10 +17,6 @@ type ValuesProps = {
   }
 }
 
-const RequestQueryFunction = () => {
-  return axios.get('http://localhost:4000/comments') 
-}
-
 const RequestQueryRQ:React.FC = () => {
 
   const onSuccess = (data) => {

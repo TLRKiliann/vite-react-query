@@ -4,8 +4,8 @@ import axios from 'axios'
 type DataProps = {
   data: {
     id: number;
-    body: string;
-    postId: number;
+    text: string;
+    author: number;
   }
 }[]
 

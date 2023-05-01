@@ -17,6 +17,7 @@ type ValuesProps = {
 }
 
 const RequestQueryRQId:React.FC = () => {
+	
 	const { commentId } = useParams()
 	const { isLoading, data, isError, error } = useComment<ValuesProps>(commentId)
 
