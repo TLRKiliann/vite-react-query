@@ -19,8 +19,30 @@
   "books": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 123
+      "title": "Harry Potter",
+      "writer": "Magdalena Gilliard"
+    },
+    {
+      "id": 2,
+      "title": "Gamer-Visitor",
+      "writer": "Tim Lee"
+    },
+    {
+      "id": 3,
+      "title": "Star-Trek",
+      "writer": "Milena Molova"
+    }
+  ],
+  "users": [
+    {
+      "id": "chat@mail.co",
+      "channel": "codevolution"
+    }
+  ],
+  "channels": [
+    {
+      "id": "codevolution",
+      "courses": "react"
     }
   ]
 }
