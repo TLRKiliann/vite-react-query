@@ -34,7 +34,7 @@ const RequestQueryRQId:React.FC = () => {
 		<div>
 			<h1>Hello comment id</h1>
 			<p style={{color: "lightgreen"}}>
-				Text: {data.data.text} - Author: {data.data.author}
+				Text: {data.data.text} - Author: {data.data.writer}
 			</p>
 		</div>
 	)

@@ -3,7 +3,20 @@ export type ValuesProps = {
   data: {
     id: number;
     text: string;
-    author: number;
+    author: string;
+  }
+  isError: boolean;
+  error: {
+    message: string;
+  }
+}
+
+export type BooksProps = {
+  isLoading: boolean;
+  data: {
+    id: number;
+    title: string;
+    author: string;
   }
   isError: boolean;
   error: {
