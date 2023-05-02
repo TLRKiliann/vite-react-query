@@ -510,3 +510,37 @@ import { ParamsProps } from '../type/data.type'
       </p>
 ...
 ```
+
+---
+
+## ParallelQueries
+
+Look at :
+
+- App.tsx
+- Navbar.tsx
+- ParallelQueries.tsx
+- db.json
+
+It's very important to define "data" as below to render correctly elements from db.
+
+```
+(ParallelQueries.tsx)
+  ...
+  const { data: comments } = useQuery(['comments'], fetchCommentsParallel)
+  const { data: books } = useQuery(['books'], fetchBooksParallel)
+
+  const commentsy = comments?.data
+  const booksy = books?.data
+
+  return (
+    ...
+    books.data.map((book) => (
+    ...
+    ))
+    ...
+```
+
+## DynamicParallelQuery
+
+Under developement...
