@@ -1,17 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import useComments from '../hooks/useComments'
 import { ValuesProps } from '../type/data.type'
+import { DataTypes } from '../type/data.type'
 
 const RequestQueryRQ:React.FC = () => {
 
-  const onSuccess = (data) => {
+  const onSuccess = (data: DataTypes) => {
     console.log("Perform side effect after data fetching", data)
   }
 
-  const onError = (error) => {
+  const onError = (error: string) => {
     console.log("Perform side effect after encountering an error", error)
   }
 
