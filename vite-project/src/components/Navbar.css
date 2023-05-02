@@ -2,7 +2,7 @@
 	width: 100%;
 	margin: auto;
 	display: flex;
-	background-color: #242424;
+	background: linear-gradient(30deg, rgba(24,24,24, 1), blue);
 	border: 1px solid #909090;
 }
 
