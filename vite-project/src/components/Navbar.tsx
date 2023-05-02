@@ -33,6 +33,17 @@ const Navbar:React.FC = () => {
             RequestqueryRQ
           </Link>
         </li>
+
+        <li>
+          <Link
+            data-testid="thirdlink"
+            className="link--tag"
+            to='/req-parallel'
+          >
+            ParallelQueries
+          </Link>
+        </li>
+
       </ul>    
     </div>
   )
